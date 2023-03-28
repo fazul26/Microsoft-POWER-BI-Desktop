@@ -1,0 +1,74 @@
+--------------ETL Part-----------
+
+1.Firstly i imported super store file into power bi desktop.
+
+2.By using ETL tool transfered into power Query.
+
+3.I applied star Schema to data set and devided into 4 dimensions DIM_OorderDetailes,DIM_Customers,DIM_products,DIM_date and 1 central fact table like Orders.
+
+4.By using power Model build a One to Many relationship between Dimensions and Order table.
+
+5.Order table ship mode column in place of 'FC' Row replaced with 'First Class'.
+
+6.One new Calculated Column  'Sales' Created--sales=[Quantity]*(1-[Discount])*[As Per Each]--
+
+7.One more new calculated Column 'Total Sales' created--Total Sales=[sales]*(1-[Discount])*Quantity---
+
+8.Created one new Conditional Column 'Cart Value' based on 'sales' Column
+	--Cart Value= IF Sales is <1000:	Low
+			  Else IF sales is<3000:	Medium
+			  Else IF sales is<10000:	High
+			  Else IF sales is>10000:	Very High--
+
+9.Extracted No Of 'Days to Delivery' by subtracting between 'Ship Date' and 'Order Date'.
+
+10.From Orders table Ship mode,Address,Region Extracted as DIM_OrderDetails table.
+
+11. DIM_Orderdetails table Address column Split into as City,State,Country,Pincode Columns and removed all Duplicate rows.
+
+12.From Orders table Customer ID,Customer Name,Segment Extracted as DIM_Customers table and removed all Duplicate rows.
+
+13.From Orders table Product ID,category,Sub Category,Product name Extracted as DIM_Products table and removed all Empty and Duplicate rows.
+
+14.I applied star Schema to data set and devided into 3 dimensions DIM_OorderDetailes,DIM_Customers,DIM_products and 1 central fact table like Orders.
+
+---------Visualization Part-------------
+
+15.By Using card visual created 'Sum Of Sales' and 'Sum Of Total sales' Visuals.
+
+16.By Using Donut Chart visual created 'Total Sales By Low cart value Category' visual by using filter on visual --by applying 'cart value' as Low.
+
+17.By Using card visual created 'Total Sales By Low cart value and Discount >=50%' visual by using filter on visual --by applying 'cart value' as Low and Discount as >=50%.
+
+18. Created Column Chart as 'Avg No Of Days To Deliver by Ship mode' visual  By using 'Ship Mode' and 'No Of Days To Deliver' Columns ( Value is 4).
+
+19.Created Matrix table as 'Sales and Sales By Year to date' Visual By using 'Order Date' Hirarchy,'Sum of Sales' and 'YTD_Sales'(Created new measer---YTD_Sales = TotalYTD(sum(Order(sales)),Dim_date[Order date].[Date])--- Columns.
+
+20.Created Matrix table as as 'Cumulative Of Sales By Each Month for all years and Year on Year growth' Visual By using 'Order Date' Hirarchy and 'Sum of Quantity','Cum_SalesMTD','YOY_Sales' Columns (Created new measure---YOY_sales = calculate(sum(order[sales]),DATEADD(DIM_date[rder date],-1,YEAR)---.
+
+21. Created PIE Chart Visual as 'Sum Of Sales by Cart value' visual By using 'Cart Value' and 'Sum Of Sales' Columns.
+
+22. all custamization part done as per visualization requirement for each individual visuals.
+
+23. sales Dashboard Report Created as per Requirement. 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
